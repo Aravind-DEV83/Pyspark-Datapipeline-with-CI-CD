@@ -1,0 +1,5 @@
+{
+    "name": "PySpark Project",
+    "version": "0.0.1",
+    "description": "Pyspark data pipeline with CI/CD: It features CI/CD integration for automatic deployment and testing across staging and production environments"
+}
