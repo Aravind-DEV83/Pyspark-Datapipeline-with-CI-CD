@@ -33,8 +33,8 @@ class IntegrationTest(PySparkTestCase):
 
     def test_transformations(self):
 
-        input_file_path = 'gs://pyspark-job-omega-baton/tests/integration/tests_data/input_uber.csv'
-        expected_output_path = 'gs://pyspark-job-omega-baton/tests/integration/tests_data/expected_uber.csv'
+        input_file_path = 'gs://pyspark-jobs-omega-baton/tests/integration/tests_data/input_uber.csv'
+        expected_output_path = 'gs://pyspark-jobs-omega-baton/tests/integration/tests_data/expected_uber.csv'
 
         input_df = self.spark.read. \
                         format("csv"). \

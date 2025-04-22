@@ -58,4 +58,4 @@ jobs:
         run: |
           echo ${{ env.DAG_ID }}
           echo ${{ env.REGION }}
-          echo ${{ env. ENV_NAME}}
+          echo ${{ env.ENV_NAME}}
