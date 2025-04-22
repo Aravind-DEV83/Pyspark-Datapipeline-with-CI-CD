@@ -12,8 +12,8 @@ PROJECT_ID=config['project_id']
 REGION=config['region']
 CLUSTER_NAME=config['cluster_name']
 BUCKET_NAME='pyspark-jobs-omega-baton'
-MAIN_PYSPARK_URI = f'gs://{BUCKET_NAME}/gcs_to_bq/job.py'
-PY_FILES=f'gs://{BUCKET_NAME}/gcs_to_bq/transformations.py'
+MAIN_PYSPARK_URI = f'gs://{BUCKET_NAME}/jobs/gcs_to_bq/job.py'
+PY_FILES=f'gs://{BUCKET_NAME}/jobs/gcs_to_bq/transformations.py'
 JARS = ['gs://spark-lib-omega-baton/gcs/gcs-connector-hadoop3-latest.jar']
 
 STAGING_JOB = {
