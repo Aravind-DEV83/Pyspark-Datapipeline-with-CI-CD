@@ -33,22 +33,21 @@ jobs:
       # 3. Setup gcloud for project
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
-      
+
       # 4. Upload files to cloud storage bukcet
       - name: Upload Unit & Integration Test Files to Cloud Storage
         uses: 'google-github-actions/upload-cloud-storage@v2'
         with:
-          path: source/dataProcessingCode/src/tests
-          destination: pyspark-testing-adev-spark
+          path: source/dataProcessingCode/tests
+          destination: pyspark-jobs-omega-baton
           process_gcloudignore: false
           gzip: false
-      
+
       # 5. Upload batch jobs to the cloud storage bucket
       - name: Upload Batch Jobs to Cloud storage
         uses: 'google-github-actions/upload-cloud-storage@v2'
         with:
-          path: source/dataProcessingCode/src/main/jobs/batch_jobs
-          destination: pyspark-jobs-adev-spark
+          path: source/dataProcessingCode/main/jobs
+          destination: pyspark-jobs-omega-baton
           process_gcloudignore: false
           gzip: false
-          
