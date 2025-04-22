@@ -10,7 +10,7 @@ env:
   SA: ${{ secrets.GCP_SA }}
   DAG_ID: ${{ secrets.PRODUCTION_DAG_ID }}
   REGION: $ {{ secrets.GCP_REGION }}
-  ENV_NAME: ${{ secrets.PRODUCTION_ENVIRONMENT_NAME }}
+  ENV_NAME: ${{ secrets.ENVIRONMENT_NAME }}
 
 jobs:
   setup_gcp_run_tests:
