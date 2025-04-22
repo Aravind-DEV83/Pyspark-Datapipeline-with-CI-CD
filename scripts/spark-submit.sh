@@ -46,3 +46,8 @@ WIP="projects/878514427384/locations/global/workloadIdentityPools/githubactionsp
 gcloud iam service-accounts add-iam-policy-binding wkf-oidc@adev-spark.iam.gserviceaccount.com \
     --member="principalSet://iam.googleapis.com/projects/878514427384/locations/global/workloadIdentityPools/githubactionspool/attribute.repository/Aravind-DEV83/Pyspark-project" \
    --role="roles/iam.serviceAccountTokenCreator"
+
+
+          gcloud composer environments run "${{ env.ENV_NAME }}" \
+            --location "${{ env.REGION }}" \
+            dags trigger -- "${{ env.DAG_ID }}"

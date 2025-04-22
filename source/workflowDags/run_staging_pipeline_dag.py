@@ -13,7 +13,7 @@ from airflow.providers.google.cloud.operators.dataproc import (
 config = Variable.get('configurations', deserialize_json=True)
 PROJECT_ID=config['project_id']
 REGION=config['region']
-CLUSTER_NAME=config['cluster_name']
+CLUSTER_NAME=config['staging_cluster_name']
 BUCKET_NAME='pyspark-jobs-omega-baton'
 MAIN_PYSPARK_URI = f'gs://{BUCKET_NAME}/jobs/gcs_to_bq/job.py'
 PY_FILES=[f'gs://{BUCKET_NAME}/jobs/gcs_to_bq/transformations.py', f'gs://{BUCKET_NAME}/jobs/gcs_to_bq/constants.py']
