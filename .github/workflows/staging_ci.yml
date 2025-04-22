@@ -9,7 +9,7 @@ env:
   WIP: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
   SA: ${{ secrets.GCP_SA }}
   DAG_ID: ${{ secrets.STAGING_DAG_ID }}
-  REGION: $ {{ secrets.GCP_REGION }}
+  REGION: ${{ secrets.GCP_REGION }}
   ENV_NAME: ${{ secrets.ENVIRONMENT_NAME }}
 
 jobs:
