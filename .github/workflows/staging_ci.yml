@@ -41,7 +41,7 @@ jobs:
       - name: 'Trigger Staging Airflow DAG'
         run: |
           gcloud composer environments run ${{ env.ENV_NAME }} \
-              --location ${{ REGION }} \
+              --location ${{ env.REGION }} \
               dags trigger -- ${{ env.DAG_ID }}
 
       # 4. Run unit tests
