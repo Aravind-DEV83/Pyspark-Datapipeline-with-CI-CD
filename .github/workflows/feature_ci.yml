@@ -38,7 +38,7 @@ jobs:
       - name: Upload Unit & Integration Test Files to Cloud Storage
         uses: 'google-github-actions/upload-cloud-storage@v2'
         with:
-          path: source/dataProcessingCode/src/tests
+          path: source/dataProcessingCode/tests
           destination: pyspark-jobs-omega-baton/tests
           process_gcloudignore: false
           gzip: false
