@@ -16,7 +16,7 @@ REGION=config['region']
 CLUSTER_NAME=config['cluster_name']
 BUCKET_NAME='pyspark-jobs-omega-baton'
 MAIN_PYSPARK_URI = f'gs://{BUCKET_NAME}/jobs/gcs_to_bq/job.py'
-PY_FILES=[f'gs://{BUCKET_NAME}/jobs/gcs_to_bq/transformations.py']
+PY_FILES=[f'gs://{BUCKET_NAME}/jobs/gcs_to_bq/transformations.py', f'gs://{BUCKET_NAME}/jobs/gcs_to_bq/constants.py']
 JARS = ['gs://spark-lib-omega-baton/gcs/gcs-connector-hadoop3-latest.jar']
 
 STAGING_JOB = {
@@ -24,10 +24,10 @@ STAGING_JOB = {
     "placement": {"cluster_name": CLUSTER_NAME},
     "pyspark_job": {
         "main_python_file_uri": MAIN_PYSPARK_URI,
-        "py_files": PY_FILES,
-        "jars": JARS,
+        "python_file_uris": PY_FILES,
+        "jar_file_uris": JARS,
         "args": [
-            '--input-location', 'gs://input-source-omega-baton/uber_5.csv',
+            '--input_location', 'gs://input-source-omega-baton/uber_5.csv',
             '--project_id', PROJECT_ID,
             '--temp_bucket', 'temp_gcs_omega_baton',
             '--output_table', 'temp.trip_data'
