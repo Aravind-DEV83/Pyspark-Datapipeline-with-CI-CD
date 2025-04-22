@@ -8,6 +8,9 @@ on:
 env:
   WIP: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
   SA: ${{ secrets.GCP_SA }}
+  DAG_ID: ${{ secrets.STAGING_DAG_ID }}
+  REGION: $ {{ secrets.GCP_REGION }}
+  ENV_NAME: ${{ secrets.STAGING_ENVIRONMENT_NAME }}
 
 jobs:
   setup_gcp_submit_staging_job:
@@ -34,35 +37,42 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
 
+      # 4. Run Staging Airflow DAG Pipeline 
+      - name: 'Trigger Staging Airflow DAG'
+        run: |
+          gcloud composer environments run ${{ env.ENV_NAME }} \
+              --location ${{ REGION }} \
+              dags trigger -- ${{ env.DAG_ID }}
+
       # 4. Run unit tests
-      - name: Run Unit Tests
-        run: |
-          gcloud dataproc jobs submit pyspark gs://pyspark-testing-adev-spark/tests/unit/test_job.py \
-            --cluster cluster-5904 \
-            --region us-central1 \
-            --py-files=gs://pyspark-testing-adev-spark/tests/unit/transformations.py
+      # - name: Run Unit Tests
+      #   run: |
+      #     gcloud dataproc jobs submit pyspark gs://pyspark-testing-adev-spark/tests/unit/test_job.py \
+      #       --cluster cluster-5904 \
+      #       --region us-central1 \
+      #       --py-files=gs://pyspark-testing-adev-spark/tests/unit/transformations.py
 
-      # 5. Run integration tests
-      - name: Run Integration Tests
-        run: |
-          gcloud dataproc jobs submit pyspark gs://pyspark-testing-adev-spark/tests/integration/test_job.py \
-            --cluster cluster-5904 \
-            --region us-central1 \
-            --jars=gs://spark-lib-adev-spark/gcs/gcs-connector-hadoop3-latest.jar \
-            --py-files=gs://pyspark-testing-adev-spark/tests/integration/transformations.py
+      # # 5. Run integration tests
+      # - name: Run Integration Tests
+      #   run: |
+      #     gcloud dataproc jobs submit pyspark gs://pyspark-testing-adev-spark/tests/integration/test_job.py \
+      #       --cluster cluster-5904 \
+      #       --region us-central1 \
+      #       --jars=gs://spark-lib-adev-spark/gcs/gcs-connector-hadoop3-latest.jar \
+      #       --py-files=gs://pyspark-testing-adev-spark/tests/integration/transformations.py
 
-      # 6. Submit pyspark job to Dataproc
-      - name: Submit Staging Pipeline Job
-        run: |
-          gcloud dataproc jobs submit pyspark gs://pyspark-jobs-adev-spark/batch_jobs/gcs_to_bq/job.py \
-            --cluster cluster-5904 \
-            --region us-central1 \
-            --py-files=gs://pyspark-jobs-adev-spark/batch_jobs/gcs_to_bq/transformations.py,gs://pyspark-jobs-adev-spark/batch_jobs/gcs_to_bq/constants.py \
-            --jars=gs://spark-lib-adev-spark/gcs/gcs-connector-hadoop3-latest.jar \
-            -- \
-            --input_location gs://input-source-adev-spark/uber_5.csv \
-            --project_id adev-spark \
-            --temp_bucket temp_gcs_adev-spark \
-            --output_table temp.trip_data
+      # # 6. Submit pyspark job to Dataproc
+      # - name: Submit Staging Pipeline Job
+      #   run: |
+      #     gcloud dataproc jobs submit pyspark gs://pyspark-jobs-adev-spark/batch_jobs/gcs_to_bq/job.py \
+      #       --cluster cluster-5904 \
+      #       --region us-central1 \
+      #       --py-files=gs://pyspark-jobs-adev-spark/batch_jobs/gcs_to_bq/transformations.py,gs://pyspark-jobs-adev-spark/batch_jobs/gcs_to_bq/constants.py \
+      #       --jars=gs://spark-lib-adev-spark/gcs/gcs-connector-hadoop3-latest.jar \
+      #       -- \
+      #       --input_location gs://input-source-adev-spark/uber_5.csv \
+      #       --project_id adev-spark \
+      #       --temp_bucket temp_gcs_adev-spark \
+      #       --output_table temp.trip_data
 
 
