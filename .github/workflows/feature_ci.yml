@@ -54,8 +54,3 @@ jobs:
           destination: pyspark-jobs-omega-baton
           process_gcloudignore: false
           gzip: false
-      - name: ''
-        run: |
-          echo ${{ env.DAG_ID }}
-          echo ${{ env.REGION }}
-          echo ${{ env.ENV_NAME}}
