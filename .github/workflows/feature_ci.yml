@@ -8,6 +8,9 @@ on:
 env:
   WIP: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
   SA: ${{ secrets.GCP_SA }}
+  DAG_ID: ${{ secrets.STAGING_DAG_ID }}
+  REGION: $ {{ secrets.GCP_REGION }}
+  ENV_NAME: ${{ secrets.ENVIRONMENT_NAME }}
 
 jobs:
   setup_and_upload_to_gcs:
@@ -51,3 +54,8 @@ jobs:
           destination: pyspark-jobs-omega-baton
           process_gcloudignore: false
           gzip: false
+      - name: ''
+        run: |
+          echo ${{ env.DAG_ID }}
+          echo ${{ env.REGION }}
+          echo ${{ env. ENV_NAME}}
