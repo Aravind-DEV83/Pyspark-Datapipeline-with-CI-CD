@@ -1,8 +1,10 @@
 from typing import Optional, Sequence, Dict, Any
 import logging
 import argparse
+
 from pyspark.sql import SparkSession, DataFrame
 from transformations import convert_to_timestamp, total_ride_time, average_speed,estimated_ride_time
+
 import constants as constants
 
 logging.basicConfig(level=logging.INFO,
@@ -32,6 +34,7 @@ def parse_args(args: Optional[Sequence[str]] = None) -> Dict[str, Any]:
     known_args, _ = parser.parse_known_args(args)
 
     return vars(known_args)
+
 
 def create_spark_session(bq_temp_bucket: str) -> SparkSession:
 
