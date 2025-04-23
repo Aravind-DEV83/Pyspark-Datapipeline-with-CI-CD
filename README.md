@@ -52,4 +52,32 @@ With GitHub's introudction of OIDC tokens into GitHub action workflows, that ena
 
 [Workload Identity Federation through a Service Account](https://github.com/google-github-actions/auth?tab=readme-ov-file#workload-identity-federation-through-a-service-account)
 
+(Optional) Create a Google Cloud Service Account. If you already have a Service Account, take note of the email address and skip this step.
 
+# TODO: replace ${PROJECT_ID} with your value below.
+
+```
+gcloud iam service-accounts create "my-service-account" \
+  --project "${PROJECT_ID}"
+```
+Create a Workload Identity Pool:
+
+# TODO: replace ${PROJECT_ID} with your value below.
+
+```
+gcloud iam workload-identity-pools create "github" \
+  --project="${PROJECT_ID}" \
+  --location="global" \
+  --display-name="GitHub Actions Pool"
+``` 
+Get the full ID of the Workload Identity Pool:
+
+# TODO: replace ${PROJECT_ID} with your value below.
+
+```
+gcloud iam workload-identity-pools describe "github" \
+  --project="${PROJECT_ID}" \
+  --location="global" \
+  --format="value(name)"
+```
+This value should be of the format: *projects/123456789/locations/global/workloadIdentityPools/github*
