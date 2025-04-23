@@ -54,7 +54,7 @@ With GitHub's introudction of OIDC tokens into GitHub action workflows, that ena
 
 (Optional) Create a Google Cloud Service Account. If you already have a Service Account, take note of the email address and skip this step.
 
-# TODO: replace ${PROJECT_ID} with your value below.
+### TODO: replace ${PROJECT_ID} with your value below.
 
 ```
 gcloud iam service-accounts create "my-service-account" \
@@ -62,7 +62,7 @@ gcloud iam service-accounts create "my-service-account" \
 ```
 Create a Workload Identity Pool:
 
-# TODO: replace ${PROJECT_ID} with your value below.
+### TODO: replace ${PROJECT_ID} with your value below.
 
 ```
 gcloud iam workload-identity-pools create "github" \
@@ -72,7 +72,7 @@ gcloud iam workload-identity-pools create "github" \
 ``` 
 Get the full ID of the Workload Identity Pool:
 
-# TODO: replace ${PROJECT_ID} with your value below.
+### TODO: replace ${PROJECT_ID} with your value below.
 
 ```
 gcloud iam workload-identity-pools describe "github" \
