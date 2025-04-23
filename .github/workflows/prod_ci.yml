@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
   push:
-    branches: ["main"]
+    branches: ["master"]
 
 env:
   WIP: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
@@ -37,7 +37,7 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
 
-      - name: 'Trigger Staging Airflow DAG'
+      - name: 'Trigger Production Airflow DAG'
         run: |
           gcloud composer environments run "${{ env.ENV_NAME }}" \
             --location "${{ env.REGION }}" \
