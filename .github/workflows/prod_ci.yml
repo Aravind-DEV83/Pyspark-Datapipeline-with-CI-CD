@@ -9,7 +9,7 @@ env:
   WIP: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
   SA: ${{ secrets.GCP_SA }}
   DAG_ID: ${{ secrets.PRODUCTION_DAG_ID }}
-  REGION: $ {{ secrets.GCP_REGION }}
+  REGION: ${{ secrets.GCP_REGION }}
   ENV_NAME: ${{ secrets.ENVIRONMENT_NAME }}
 
 jobs:
@@ -42,7 +42,6 @@ jobs:
           gcloud composer environments run "${{ env.ENV_NAME }}" \
             --location "${{ env.REGION }}" \
             dags trigger -- "${{ env.DAG_ID }}"
-
       # 4. Run unit tests
       # - name: Trigger Unit Tests
       #   run: |
