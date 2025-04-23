@@ -46,6 +46,7 @@ Integrated Apache Airflow with GitHub Actions to orchestrate and automate PySpar
 
 
 ## Project Structure
+```
 .
 ├── source/
 │   ├── dataProcessingCode/
@@ -60,12 +61,11 @@ Integrated Apache Airflow with GitHub Actions to orchestrate and automate PySpar
 ├── .github/
 │   └── workflows/
 └── README.md
-
-
+```
 
 ## Features
 
-### 1.Google Cloud & GitHub Keyless Authentication
+### 1. Google Cloud & GitHub Keyless Authentication
 
 The GitHub action authenticates to google cloud via the `Workload Identity Federation` is recomended over the service account keys that needs to exported to GitHub secrets which is long-lived. 
 
@@ -156,14 +156,14 @@ Production
       dags trigger -- "${{ env.DAG_ID }}"
 ```
 
-### 4.Deployment Time Optimization
+### 4. Deployment Time Optimization
 The overall deployment time has been reduced from 15–23 minutes to approximately 11 minutes. This improvement was achieved by:
 
 The time taken for manual code upload, scripts, tests to gcs bucket and SSH into the dataproc cluster, submit the pyspark jobs manually & monitor them would take around 15-25 minutes.
 
 By integrating GitHub actions with Airflow would automate all these steps and brought down the deployment time to just 11 minutes
 
-Time Saved: (yaje)
+Time Saved: (consider average)
 Minimum time saved: 15 - 11 = 4 minutes
 Maximum time saved: 23 - 11 = 12 minutes
 Average improvement: ~40% reduction in deployment time
