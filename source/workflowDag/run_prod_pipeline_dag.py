@@ -106,5 +106,5 @@ with DAG(
     )
 
 
-start_pipeline >> run_unit_tests >> run_integration_tests >> end_pipeline
+start_pipeline >> create_cluster >> run_unit_tests >> run_integration_tests >> delete_cluster >> end_pipeline
     
